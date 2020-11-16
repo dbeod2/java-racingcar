@@ -1,6 +1,7 @@
 package step5.controller;
 
 import step5.domain.Car;
+import step5.domain.RacingWinner;
 import step5.util.CarUtils;
 
 import java.util.Arrays;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 public class RacingCarController {
     private final List<Car> cars;
     private final int numberOfMove;
-    private int carMoveCount;
+    private int round;
 
     public RacingCarController(List<Car> cars, int numberOfMove) {
         this.cars = cars;
@@ -28,25 +29,30 @@ public class RacingCarController {
                 .collect(Collectors.toList());
     }
 
-    private void carMove() {
+    private void racing() {
         cars.forEach(car -> car.move(CarUtils.getRandom()));
         hasNextRound();
     }
 
     private void hasNextRound() {
-        carMoveCount++;
+        round++;
     }
 
     public List<Car> gameProgress() {
-        carMove();
+        racing();
         return getCars();
     }
 
     public boolean isFinish() {
-        return numberOfMove == carMoveCount;
+        return numberOfMove == round;
     }
 
     public List<Car> getCars() {
         return this.cars;
+    }
+
+    public String getWinners(){
+        RacingWinner racingWinner = new RacingWinner(cars);
+        return racingWinner.getWinners();
     }
 }
