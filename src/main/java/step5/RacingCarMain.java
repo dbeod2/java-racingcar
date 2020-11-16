@@ -18,6 +18,6 @@ public class RacingCarMain {
             resultPrint(racingCarController.gameProgress());
         }
 
-        finalWinner(racingCarController.getCars());
+        finalWinner(racingCarController.getWinners());
     }
 }

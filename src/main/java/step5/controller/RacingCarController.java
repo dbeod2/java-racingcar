@@ -51,7 +51,7 @@ public class RacingCarController {
         return this.cars;
     }
 
-    public String getWinners(){
+    public String getWinners() {
         RacingWinner racingWinner = new RacingWinner(cars);
         return racingWinner.getWinners();
     }
